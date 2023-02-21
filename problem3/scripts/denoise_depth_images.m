@@ -19,7 +19,8 @@ for i = 1:numel(rgbFiles)
     % Apply bilateral filter to denoise depth image
     denoisedDepthImage = bilateral_filter(rgbImage, depthImage);
     
-    % Save denoised depth image
-    outputFilePath = fullfile(outputDir, depthFiles(i).name);
+    % Save denoised depth image as PNG
+    [~,name,ext] = fileparts(depthFiles(i).name);
+    outputFilePath = fullfile(outputDir, [name '.png']);
     imwrite(denoisedDepthImage, outputFilePath);
 end
